@@ -1,0 +1,9 @@
+Package: superpaquet-site
+Version: 1:1-0
+Section: nmarsan
+Priority: optional
+Architecture: amd64
+Maintainer: nmarsan <support@superpaquet.net>
+Description: déploie le site test
+Depends: superpaquet-vhost
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DIR="/var/www/test"
+
+# ajoute la conf apache, le vhost et restart
+if [ -d $DIR ]
+then
+  echo "--| Le repertoire $DIR existe"
+else
+  echo "--| creation du dossier $DIR"
+	mkdir -p $DIR/httpdocs
+	mkdir -p $DIR/log
+ 	chown -R www-data:www-data $DIR
+fi
+a2ensite test.conf
+/etc/init.d/apache2 restart

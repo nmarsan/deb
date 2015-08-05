@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR="/var/www/test"
+
+mv /tmp/site/* $DIR/
