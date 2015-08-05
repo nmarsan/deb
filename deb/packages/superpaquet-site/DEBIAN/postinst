@@ -1,5 +1,13 @@
 #!/bin/bash
 
 DIR="/var/www/test"
-
-mv /tmp/site/* $DIR/
+if [ -d $DIR ]
+ then
+  	echo "--| $DIR existe - mise à jour de son contenu"
+  	rm -rf $DIR/*
+  	mv /tmp/site/* $DIR/
+	chown -R www-data:www-data $DIR
+ else
+	mv /tmp/site/* $DIR/
+ 	chown -R www-data:www-data $DIR
+fi
