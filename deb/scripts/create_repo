@@ -4,19 +4,26 @@
 HOME="/home/nmarsan/PACK/deb"
 DIR_packages="$HOME/packages"
 DIR_incomming="$HOME/repository/incoming"
-
 # liste des paquets
 LIST_packages="$(find $DIR_packages/* -type d -prune)" 
 
+# reset de incoming
+if [ -d ${DIR_incomming} ]
+ then
+  	echo "--| suppression du contenu de ${DIR_incomming} "
+  	rm ${DIR_incomming}/*
+ else
+     echo "--| creation de ${DIR_incomming} "
+	 mkdir -p ${DIR_incomming}
+fi
+
 # creation paquet
 for Rep in ${LIST_packages}; do
-
+   # nom du repertoire
    fname=$(basename ${Rep})
    fbname=${fname%.*}
-   
-  # numéro de version
+   # numéro de version
    version=`grep "Version" ${Rep}/DEBIAN/control | cut -d' ' -f2 | cut -d'-' -f1`
    version_norm=${version/:/.}
- 
    dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
 done
