@@ -10,7 +10,13 @@ LIST_packages="$(find $DIR_packages/* -type d -prune)"
 
 # creation paquet
 for Rep in ${LIST_packages}; do
+
    fname=$(basename ${Rep})
    fbname=${fname%.*}
-   dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}.deb
+   
+  # numéro de version
+   version=`grep "Version" ${Rep}/DEBIAN/control | cut -d' ' -f2 | cut -d'-' -f1`
+   version_norm=${version/:/.}
+ 
+   dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
 done
