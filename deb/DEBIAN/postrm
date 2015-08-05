@@ -1,0 +1,24 @@
+ #!/bin/bash
+ # script ménage
+rm /etc/apache2/sites-enabled/test.conf
+DIR="/var/www/test"
+if [ -d $DIR ]
+then
+	printf 'Voulez vous supprimer le contenu de $DIR (o/n) '
+	read REPONSE
+	
+	case $REPONSE in
+     	o)
+          echo "suppression du repertoire $DIR"
+	  rm -rf $DIR
+          ;;
+     	n|*)
+          echo "le repertoire $DIR est concervé"
+          ;;
+	esac
+
+else
+  echo "--| pas de repertoire $DIR"
+fi
+/etc/init.d/apache2 restart
+

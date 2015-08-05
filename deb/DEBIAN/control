@@ -1,0 +1,9 @@
+Package: super-paquet
+Version: 1:1-0
+Section: supertest
+Priority: optional
+Architecture: amd64
+Maintainer: Test Team <support@super.net>
+Description: Installe mon paquet test
+Depends: apache2(>=2.2)
+
