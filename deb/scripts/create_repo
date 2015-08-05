@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# repertoire de travail
+HOME="/home/nmarsan/PACK/deb"
+DIR_packages="$HOME/packages"
+DIR_incomming="$HOME/repository/incoming"
+
+# liste des paquets
+LIST_packages="$(find $DIR_packages/* -type d -prune)" 
+
+# creation paquet
+for Rep in ${LIST_packages}; do
+   fname=$(basename ${Rep})
+   fbname=${fname%.*}
+   dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}.deb
+done
