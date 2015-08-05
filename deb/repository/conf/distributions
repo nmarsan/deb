@@ -1,0 +1,18 @@
+Origin: nmarsan
+Label: superpaquet
+Suite: stable
+Codename: wheezy
+Version: 1.0
+Architectures: i386 amd64 source
+Components: main non-free contrib
+Description: repository superpaquet nmarsan
+
+Origin: nmarsan      
+Label: superpaquet
+Suite: testing
+Codename: squeeze
+Version: 1.0
+Architectures: i386 amd64 source
+Components: main non-free contrib
+Description: repository superpaquet nmarsan
+
