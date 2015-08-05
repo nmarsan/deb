@@ -1,0 +1,7 @@
+Archive: testing
+Version: 1.0
+Component: contrib
+Origin: nmarsan
+Label: superpaquet
+Architecture: amd64
+Description: repository superpaquet nmarsan

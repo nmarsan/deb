@@ -4,6 +4,8 @@
 HOME="/home/nmarsan/PACK/deb"
 DIR_packages="$HOME/packages"
 DIR_incomming="$HOME/repository/incoming"
+DIR_repository="$HOME/repository"
+
 # liste des paquets
 LIST_packages="$(find $DIR_packages/* -type d -prune)" 
 
@@ -27,3 +29,7 @@ for Rep in ${LIST_packages}; do
    version_norm=${version/:/.}
    dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
 done
+
+# creation repo
+echo "--| creation du repository "
+reprepro -b ${DIR_repository} export
