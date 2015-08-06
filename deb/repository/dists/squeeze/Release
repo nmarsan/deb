@@ -3,7 +3,7 @@ Label: superpaquet
 Suite: testing
 Codename: squeeze
 Version: 1.0
-Date: Thu, 06 Aug 2015 09:53:53 UTC
+Date: Thu, 06 Aug 2015 14:37:47 UTC
 Architectures: i386 amd64
 Components: main non-free contrib
 Description: repository superpaquet nmarsan

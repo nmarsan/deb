@@ -1,14 +1,14 @@
 #!/bin/bash
-
+set -x
 # serveur web
 DIR_http="/etc/apache2"
 DIR_www="/var/www"
 
 # repertoire de travail
-HOME="/home/nmarsan/PACK/deb"
-DIR_packages="$HOME/packages"
-DIR_incomming="$HOME/repository/incoming"
-DIR_repository="$HOME/repository"
+HOME2="/home/nmarsan/PACK/deb"
+DIR_packages="$HOME2/packages"
+DIR_incomming="$HOME2/repository/incoming"
+DIR_repository="$HOME2/repository"
 
 # liste des paquets
 LIST_packages="$(find $DIR_packages/* -type d -prune)" 
@@ -36,7 +36,7 @@ done
 
 # creation du repository
 echo "--| creation du repository "
-reprepro -b ${DIR_repository} export
+reprepro -b ${DIR_repository} --ask-passphrase export
 
 # creation du vhost repository
 if [ -d ${DIR_http} ]

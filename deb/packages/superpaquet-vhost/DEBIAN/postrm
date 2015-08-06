@@ -1,6 +1,6 @@
  #!/bin/bash
  # script ménage
-rm /etc/apache2/sites-enabled/test.conf
+rm -f /etc/apache2/sites-enabled/test.conf
 DIR="/var/www/test"
 if [ -d $DIR ]
 then
@@ -21,5 +21,5 @@ else
   echo "--| pas de repertoire $DIR"
 fi
 /etc/init.d/apache2 restart
-rm /etc/apache2/sites-available/test.conf
+rm -f /etc/apache2/sites-available/test.conf
 

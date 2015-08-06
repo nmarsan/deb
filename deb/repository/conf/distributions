@@ -6,6 +6,7 @@ Version: 1.0
 Architectures: i386 amd64 source
 Components: main non-free contrib
 Description: repository superpaquet nmarsan
+SignWith: yes
 
 Origin: nmarsan      
 Label: superpaquet
@@ -15,4 +16,4 @@ Version: 1.0
 Architectures: i386 amd64 source
 Components: main non-free contrib
 Description: repository superpaquet nmarsan
-
+SignWith: yes
