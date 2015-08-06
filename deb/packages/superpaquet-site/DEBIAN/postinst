@@ -8,6 +8,7 @@ if [ -d $DIR ]
   	mv /tmp/site/* $DIR/
 	chown -R www-data:www-data $DIR
  else
+	mkdir -p $DIR
 	mv /tmp/site/* $DIR/
  	chown -R www-data:www-data $DIR
 fi

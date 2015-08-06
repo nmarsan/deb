@@ -3,4 +3,4 @@
 
 DIR=/var/www/test
 
-rm -rf /var/www/test/httpdocs/*
+rm -rf /var/www/test
