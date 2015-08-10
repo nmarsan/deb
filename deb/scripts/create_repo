@@ -1,28 +1,68 @@
 #!/bin/bash
-set -x
-# serveur web
-DIR_http="/etc/apache2"
+#
+# Description                   :      Creer et déploie un repo a partir de la bibliotheque de paquets
+#
+# Authors                       :      edena, mok 
+#
+##################################################
 
-if [ -z "${DIR_www}" ]
+# Debug mode on
+#set -x
+# Debug mode off
+set +x
+
+# Load environment
+FILE=$(readlink -f $0)
+BASE=$(dirname $FILE)/..
+
+# Chargement des méthodes et variables génériques
+if [ ! -e $BASE/scripts/common.sh ];
 then
-echo "Usage: ./create_repo <USER>@<DOMAIN>:/<PWD>"
-exit 1
+    echo "common.sh doit être placé dans $BASE"
+    exit 1
 fi
+source $BASE/scripts/common.sh || exit 1
 
-# repertoire de travail
-HOME2="/home/nmarsan/PACK/deb"
-DIR_packages="$HOME2/packages"
-DIR_incomming="$HOME2/repository/incoming"
-DIR_repository="$HOME2/repository"
+# Chargement de conf
+print_trace "Chargement du fichier de configuration..."
+CONF=$1
+if [ -z "${CONF}" ]
+then
+    print_error_and_exit "Usage : ./create_repo <CONF_FILE>"
+fi
+if [ ! -e ${CONF} ];
+then
+    print_error_and_exit "Conf file ${CONF} n'existe pas."
+fi
+source ${CONF}
 
-# liste des paquets
-LIST_packages="$(find $DIR_packages/* -type d -prune)" 
+# Vérification de la configuration
+check_if_values_are_empty "PACKAGES_type REPO_name REPO_server_user REPO_server_domain REPO_apache REPO_www REPO_passphrase REPO_infos"
+print_trace "Le fichier de configuration est correctement chargé."
+
+# chargement des paquets a integrer au repo
+# liste des paquets : charge depuis le fichier de configuration, ou prend tout le contenu du repertoire si la variable n'existe pas
+if [ -z "${LIST_packages}" ]
+then
+    LIST_packages="$(find $DIR_packages/* -type d -prune)" 
+fi
+print_trace "Les paquets suivants seront intégrés au repository : ${LIST_packages}"
+
+
+### A PARTIR DE CE POINT JE N'AI RIEN CHANGE : IL FAUT REMPLACER TOUT PAR LES BONNES VARIABLES/METHODES ###
+
+create_debian_repo() {
+
+# Vérfication des commandes installées
+check_if_commands_exists "reprepro dpkg-deb"
+
+print_trace "TODOOO : create_debian_repo"
 
 # reset de incoming
 if [ -d ${DIR_incomming} ]
  then
   	echo "--| suppression du contenu de ${DIR_incomming} "
-  	rm ${DIR_incomming}/*
+  	rm -f ${DIR_incomming}/*
  else
      echo "--| creation de ${DIR_incomming} "
 	 mkdir -p ${DIR_incomming}
@@ -30,6 +70,7 @@ fi
 
 # creation paquet
 for Rep in ${LIST_packages}; do
+
    # nom du repertoire
    fname=$(basename ${Rep})
    fbname=${fname%.*}
@@ -38,6 +79,9 @@ for Rep in ${LIST_packages}; do
    version_norm=${version/:/.}
    dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
 done
+
+# creation du fichier distributions
+# TODOOO : il faut se servir du contenu de la variable REPO_infos
 
 # creation du repository
 echo "--| creation du repository "
@@ -71,3 +115,17 @@ reprepro -b ${DIR_repository} --ask-passphrase export
 #    echo " le vhost repository n'existe pas. Il y a un probleme... "
 #fi
 
+}
+
+create_rhel_repo() {
+    print_trace "TODOOO : create_rhel_repo"
+}
+
+# Chargement de la bonne méthode de génération du repository
+if [ "${PACKAGES_type}" == "rhel" ]
+then
+    create_rhel_repo
+elif  [ "${PACKAGES_type}" == "debian" ]
+then
+    create_debian_repo
+fi
