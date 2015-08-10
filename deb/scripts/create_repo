@@ -2,7 +2,12 @@
 set -x
 # serveur web
 DIR_http="/etc/apache2"
-DIR_www="/var/www"
+
+if [ -z "${DIR_www}" ]
+then
+echo "Usage: ./create_repo <USER>@<DOMAIN>:/<PWD>"
+exit 1
+fi
 
 # repertoire de travail
 HOME2="/home/nmarsan/PACK/deb"
@@ -28,7 +33,7 @@ for Rep in ${LIST_packages}; do
    # nom du repertoire
    fname=$(basename ${Rep})
    fbname=${fname%.*}
-   # numéro de version
+   # numero de version
    version=`grep "Version" ${Rep}/DEBIAN/control | cut -d' ' -f2 | cut -d'-' -f1`
    version_norm=${version/:/.}
    dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
@@ -39,29 +44,30 @@ echo "--| creation du repository "
 reprepro -b ${DIR_repository} --ask-passphrase export
 
 # creation du vhost repository
-if [ -d ${DIR_http} ]
-    then
-        if [ -f ${DIR_http}/sites-available/99-repository.conf ]
-            then
-            echo "--| Vhost repository ok"
-            else
-            echo " --| Creation du vhost repository"
-            sudo mkdir -p ${DIR_www}/repository
-            sudo cp ${HOME}/scripts/99-repository.conf ${DIR_http}/sites-available/
-            sudo ln -s ${DIR_http}/sites-available/99-repository.conf ${DIR_http}/sites-enabled/99-repository.conf
-            sudo /etc/init.d/apache2 restart
-          fi
-    else
-    echo " ${DIR_http} n'existe pas, le vhost repository ne sera pas cree."
-fi
-if [ -d ${DIR_www}/repository ]
-    then
-    sudo rsync -avz --delete-after ${HOME}/repository/ ${DIR_www}/repository/
-    sudo chown -R www-data:www-data ${DIR_www}/repository
-    # ajout du source list
-    sudo cp ${HOME}/scripts/superpaquet.list /etc/apt/sources.list.d/
-    sudo apt-get update
-    else
-    echo " le vhost repository n'existe pas. Il y a un probleme... "
-fi
+#if [ -d ${DIR_http} ]
+#    then
+#        if [ -f ${DIR_http}/sites-available/99-repository.conf ]
+#            then
+#            echo "--| Vhost repository ok"
+#            else
+#            echo " --| Creation du vhost repository"
+#            sudo mkdir -p ${DIR_www}/repository
+#            sudo cp ${HOME}/scripts/99-repository.conf ${DIR_http}/sites-available/
+#            sudo ln -s ${DIR_http}/sites-available/99-repository.conf ${DIR_http}/sites-enabled/99-repository.conf
+#            sudo /etc/init.d/apache2 restart
+#
+#          fi
+#    else
+#    echo " ${DIR_http} n'existe pas, le vhost repository ne sera pas cree."
+#fi
+#if [ -d ${DIR_www}/repository ]
+#    then
+#    sudo rsync -avz --delete-after ${HOME}/repository/ ${DIR_www}/repository/
+#    sudo chown -R www-data:www-data ${DIR_www}/repository
+#    # ajout du source list
+#    sudo cp ${HOME}/scripts/superpaquet.list /etc/apt/sources.list.d/
+##    sudo apt-get update
+##    else
+#    echo " le vhost repository n'existe pas. Il y a un probleme... "
+#fi
 
