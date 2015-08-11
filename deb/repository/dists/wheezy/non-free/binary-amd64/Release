@@ -1,7 +1,0 @@
-Archive: testing
-Version: 1.0
-Component: non-free
-Origin: nmarsan
-Label: superpaquet
-Architecture: amd64
-Description: repository superpaquet nmarsan
