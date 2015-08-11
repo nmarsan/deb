@@ -1,0 +1,41 @@
+#! /bin/bash
+# Template exemple de configuration
+
+# Informations concernant les paquets à générer (debian|rhel)
+PACKAGES_type="debian"
+#PACKAGES_type="rhel"
+
+# Informations du serveur cible ou sera installe le repo
+REPO_name="monsite"
+REPO_server_user="monuser"
+REPO_server_domain="monserveur"
+REPO_apache="/etc/apache2"
+REPO_www="/var/www/monsite/httpdocs"
+REPO_passphrase="maphrase"
+REPO_distribs="wheezy jessie"
+
+# Components possible : main non-free contrib
+# Informations utilisées pour générer le fichier distributions
+
+REPO_infos="Origin: moi-meme
+Label: superpaquet
+Suite: testing
+Codename: wheezy
+Version: 1.0
+Architectures: i386 amd64 source
+Components: non-free
+Description: repository superpaquet nmarsan
+SignWith: yes
+
+Origin: moi-meme
+Label: superpaquet
+Suite: stable
+Codename: jessie
+Version: 1.0
+Architectures: i386 amd64 source
+Components: non-free
+Description: repository superpaquet nmarsan
+SignWith: yes"
+
+# liste des paquets a integrer dans le repos
+LIST_packages="superpaquet-site superpaquet-vhost" 

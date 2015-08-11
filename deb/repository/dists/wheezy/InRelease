@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
 Origin: nmarsan
 Label: superpaquet
 Suite: testing
@@ -37,3 +40,14 @@ SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 non-free/source/Sources
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 non-free/source/Sources.gz
  f7a71c9b663380714eaf4c897ad4a229c335c63039672a632490efaf90010d18 150 non-free/source/Release
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJVygMyAAoJEIz/fysudLWDy0sIAIcjLSRPft3HrNxf1wY0U2hS
+rISToQRlPcjLe5yaD1ItD5lrgtcY+x1Q1V2hVxsMIXSOevo3JCT0OPXRUvPqA3of
+vmP6NiaLiNufR7r8+yuJlBB3dofreDq58p4Uio7dS/H2e/+oXJMAtMa2uxI55uMF
+0jkKfruo+bzkf6C/QSJ8DzXPDhZeg1cK+j3PLvTRnWLlwJZSMPiqgkz5a9JljAO5
+mgoLCag52lI8ezrGn8HtjKNeXFEp8hEPzIcDxzxgaCuML/rKmBjv7BdpRa0lYoBq
+oK4oZQWw9+hfy9f+iTy9NlkUuN+xVMjALFmqQAxC913YHWF8kj3AFqy3QwPhDuY=
+=TmJa
+-----END PGP SIGNATURE-----

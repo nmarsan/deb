@@ -1,7 +1,7 @@
-Archive: testing
+Archive: stable
 Version: 1.0
 Component: non-free
 Origin: nmarsan
 Label: superpaquet
-Architecture: amd64
+Architecture: source
 Description: repository superpaquet nmarsan

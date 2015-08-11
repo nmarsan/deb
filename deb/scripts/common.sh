@@ -15,9 +15,8 @@ then
 fi
 
 # Repertoire de travail : ces variables ne changeront jamais on peut les mettre dans common
-#HOME2="/home/nmarsan/PACK/deb" home2 n'est plus utile car detecté automatiquement dans BASE
 DIR_packages="$BASE/packages"
-DIR_incomming="$BASE/repository/incoming"
+DIR_incoming="$BASE/repository/incoming"
 DIR_repository="$BASE/repository"
 
 

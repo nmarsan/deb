@@ -54,66 +54,44 @@ print_trace "Les paquets suivants seront intégrés au repository : ${LIST_packa
 create_debian_repo() {
 
 # Vérfication des commandes installées
-check_if_commands_exists "reprepro dpkg-deb"
-
-print_trace "TODOOO : create_debian_repo"
+check_if_commands_exists "reprepro dpkg-deb expect"
 
 # reset de incoming
-if [ -d ${DIR_incomming} ]
+if [ -d ${DIR_repository} ]
  then
-  	echo "--| suppression du contenu de ${DIR_incomming} "
-  	rm -f ${DIR_incomming}/*
- else
-     echo "--| creation de ${DIR_incomming} "
-	 mkdir -p ${DIR_incomming}
+  	print_trace "--| suppression du contenu de ${DIR_incoming} "
+  	rm -fr ${DIR_repository}/*
 fi
+print_trace "--| creation de ${DIR_incoming} "
+mkdir -p ${DIR_repository}/conf
+mkdir -p ${DIR_incoming}
+chmod 775 ${DIR_incoming}
+
+# creation du fichier distributions
+echo "${REPO_infos}" > ${DIR_repository}/conf/distributions
 
 # creation paquet
-for Rep in ${LIST_packages}; do
-
-   # nom du repertoire
-   fname=$(basename ${Rep})
-   fbname=${fname%.*}
+for package in ${LIST_packages}; do
+   Rep="${DIR_packages}/${package}"
    # numero de version
    version=`grep "Version" ${Rep}/DEBIAN/control | cut -d' ' -f2 | cut -d'-' -f1`
    version_norm=${version/:/.}
-   dpkg-deb --build ${Rep}  ${DIR_incomming}/${fbname}_${version_norm}.deb
-done
+   dpkg-deb --build ${Rep}  ${DIR_incoming}/${package}_${version_norm}.deb
+   # pour chaque distribution
+   for distrib in ${REPO_distribs}; do
+  # if [  ]
+  #  then
+  #     reprepro -b ${DIR_repository} includedeb ${distrib} ${DIR_incoming}/${package}_${version_norm}.deb
+  #  else
+        ${BASE}/scripts/reprepro_withpass ${DIR_repository} ${distrib} ${DIR_incoming}/${package}_${version_norm}.deb ${REPO_passphrase}
+  # fi  
+   done
+  
+ done
 
-# creation du fichier distributions
-# TODOOO : il faut se servir du contenu de la variable REPO_infos
+# rsync repository
+rsync -rvz --delete-after ${DIR_repository}/ ${REPO_server_user}@${REPO_server_domain}:/${REPO_www}/
 
-# creation du repository
-echo "--| creation du repository "
-reprepro -b ${DIR_repository} --ask-passphrase export
-
-# creation du vhost repository
-#if [ -d ${DIR_http} ]
-#    then
-#        if [ -f ${DIR_http}/sites-available/99-repository.conf ]
-#            then
-#            echo "--| Vhost repository ok"
-#            else
-#            echo " --| Creation du vhost repository"
-#            sudo mkdir -p ${DIR_www}/repository
-#            sudo cp ${HOME}/scripts/99-repository.conf ${DIR_http}/sites-available/
-#            sudo ln -s ${DIR_http}/sites-available/99-repository.conf ${DIR_http}/sites-enabled/99-repository.conf
-#            sudo /etc/init.d/apache2 restart
-#
-#          fi
-#    else
-#    echo " ${DIR_http} n'existe pas, le vhost repository ne sera pas cree."
-#fi
-#if [ -d ${DIR_www}/repository ]
-#    then
-#    sudo rsync -avz --delete-after ${HOME}/repository/ ${DIR_www}/repository/
-#    sudo chown -R www-data:www-data ${DIR_www}/repository
-#    # ajout du source list
-#    sudo cp ${HOME}/scripts/superpaquet.list /etc/apt/sources.list.d/
-##    sudo apt-get update
-##    else
-#    echo " le vhost repository n'existe pas. Il y a un probleme... "
-#fi
 
 }
 

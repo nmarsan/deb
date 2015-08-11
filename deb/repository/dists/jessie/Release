@@ -1,39 +1,39 @@
 Origin: nmarsan
 Label: superpaquet
-Suite: testing
-Codename: wheezy
+Suite: stable
+Codename: jessie
 Version: 1.0
-Date: Tue, 11 Aug 2015 14:14:09 UTC
+Date: Tue, 11 Aug 2015 14:14:10 UTC
 Architectures: i386 amd64
 Components: non-free
 Description: repository superpaquet nmarsan
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 non-free/binary-i386/Packages
  7029066c27ac6f5ef18d660d5741979a 20 non-free/binary-i386/Packages.gz
- a559e72ebbcc8a4a374b7751931d8899 148 non-free/binary-i386/Release
+ 6b72d9b23f7f8f222fc6ddc824100e81 147 non-free/binary-i386/Release
  0957d27a074730160e0f60f26848119e 905 non-free/binary-amd64/Packages
  d3d7c060f0eaaaf98dd97d6ac41809b8 472 non-free/binary-amd64/Packages.gz
- 5ab0c847571f92d027270230d0b5765b 149 non-free/binary-amd64/Release
+ 5819deb4a56654fe4f6f845135f929cf 148 non-free/binary-amd64/Release
  d41d8cd98f00b204e9800998ecf8427e 0 non-free/source/Sources
  7029066c27ac6f5ef18d660d5741979a 20 non-free/source/Sources.gz
- 488cea68d0d95815c65bfb2131886f76 150 non-free/source/Release
+ 3ebdb49a872e077e68142e1d9775ef28 149 non-free/source/Release
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 non-free/binary-i386/Packages
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 non-free/binary-i386/Packages.gz
- acfbdfe4da45e074c9a75a9071b5595816868e29 148 non-free/binary-i386/Release
+ d9f5a613baa0dbcb7571c0e13b2d3e9804b3f3ae 147 non-free/binary-i386/Release
  b4ea2374810e91f17f77d742e302c5b8a3b2d123 905 non-free/binary-amd64/Packages
  970f81b21c47b9a93c373eaba6292027ee7d83bd 472 non-free/binary-amd64/Packages.gz
- 935193f11c57897e0cb46fddfb0074cee1481844 149 non-free/binary-amd64/Release
+ 6b66a536aca8924e9578bc92678c029b41484f27 148 non-free/binary-amd64/Release
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 non-free/source/Sources
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 non-free/source/Sources.gz
- e307095baf8f13a4769860ceaf712e4f103d42b5 150 non-free/source/Release
+ 3d3a0e2b6f2d601f87f36aba3f9e86d2138279d3 149 non-free/source/Release
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 non-free/binary-i386/Packages
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 non-free/binary-i386/Packages.gz
- 2698135fc8b8a1ae13efde1df5e9071ac161d82292ae4aa7186d08107c0258b9 148 non-free/binary-i386/Release
+ 174991375fb17621b747e05c9acac935a757a49fb884681c2c223a18b3435da7 147 non-free/binary-i386/Release
  657de9e19c162b18d9febd2e6607e1e6149ee1989efb0a0a04618784dfdee9ee 905 non-free/binary-amd64/Packages
  bb5bedaf20b791fc2a8beb2f501f62878ef5a6eb065eb3d15acb3dbf64568675 472 non-free/binary-amd64/Packages.gz
- 4de157afcfb7aa3cb9396d0ea25edbd65a6c836b1d82400780ca17bdd88a3614 149 non-free/binary-amd64/Release
+ 11942639279d29c2eb8abf838c8c4592f45ca0a7ee50b38b2e49cc32887636f2 148 non-free/binary-amd64/Release
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 non-free/source/Sources
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 non-free/source/Sources.gz
- f7a71c9b663380714eaf4c897ad4a229c335c63039672a632490efaf90010d18 150 non-free/source/Release
+ 5c17a7cb91cd454a7df0a4bad1d6028a798b24e2bf81ac8507db494ded5f758e 149 non-free/source/Release
